@@ -1,5 +1,7 @@
 #include "ImGuiWrapper.hpp"
 
+#include <iostream>
+
 #include <cstdio>
 #include <vector>
 #include <cmath>
@@ -140,9 +142,12 @@ bool ImGuiWrapper::update_key_data(wxKeyEvent &evt)
 
         // XXX: Unfortunatelly this seems broken due to some interference with wxWidgets,
         // we have to return true always (perform re-render).
-        // new_frame();
-        // return want_keyboard() || want_text_input();
-        return true;
+        new_frame();
+
+        std::cerr << "want_keyboard: " << want_keyboard() << " , want_text_input: " << want_text_input() << std::endl;
+
+        return want_keyboard() || want_text_input();
+        // return true;
     }
 }
 
